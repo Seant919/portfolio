@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shinichiro Takemoto | English-Japanese Translator & Localization Specialist</title>
+  <meta name="description" content="English-Japanese translator and MTPE specialist focusing on IT, Cloud, and AI. Over 20 years of experience with 13+ million words translated.">
+  
+  <meta name="robots" content="noindex,nofollow">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ============================================================
+       DESIGN TOKENS & BASE STYLES
+       ============================================================ */
+    :root {
+      --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.8125rem);
+      --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 0.9375rem);
+      --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.0625rem);
+      --text-lg: clamp(1.125rem, 1rem + 0.75vw, 1.25rem);
+      --text-xl: clamp(1.5rem, 1.2rem + 1.25vw, 1.75rem);
+      --text-2xl: clamp(1.75rem, 1.2rem + 2.5vw, 2.5rem);
+      
+      --space-2: 0.5rem; --space-3: 0.75rem; --space-4: 1rem;
+      --space-6: 1.5rem; --space-8: 2rem; --space-10: 2.5rem;
+      --space-12: 3rem; --space-16: 4rem; --space-20: 5rem;
+
+      --radius-sm: 4px; --radius-md: 6px; --radius-lg: 10px;
+      
+      --font-display: 'Inter', 'Noto Sans JP', sans-serif;
+      --font-body: 'Inter', 'Noto Sans JP', sans-serif;
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    :root, [data-theme="light"] {
+      --color-bg: #ffffff; --color-surface: #f8fafc;
+      --color-surface-2: #ffffff; --color-surface-offset: #f1f5f9;
+      --color-divider: #e2e8f0; --color-border: #cbd5e1;
+      --color-text: #0f172a; --color-text-muted: #475569;
+      --color-text-faint: #94a3b8; 
+      --color-primary: #0f4c81; --color-primary-hover: #0a365c;
+      --color-primary-active: #06223b; --color-primary-light: #bfdbfe;
+      --color-primary-bg: #eff6ff;
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      --shadow-lg: 0 10px 25px -3px rgba(15, 23, 42, 0.08);
+    }
+
+    [data-theme="dark"] {
+      --color-bg: #0b0f19; --color-surface: #111827;
+      --color-surface-2: #1e293b; --color-surface-offset: #334155;
+      --color-divider: #334155; --color-border: #475569;
+      --color-text: #f8fafc; --color-text-muted: #cbd5e1;
+      --color-text-faint: #64748b;
+      --color-primary: #60a5fa; --color-primary-hover: #93c5fd;
+      --color-primary-active: #bfdbfe; --color-primary-light: #1e3a8a;
+      --color-primary-bg: #172554;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: var(--font-body); font-size: var(--text-base);
+      color: var(--color-text); background: var(--color-bg);
+      line-height: 1.6; transition: background 0.3s var(--ease-out), color 0.3s;
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+    .container { max-width: 1140px; margin: 0 auto; padding: 0 var(--space-6); }
+
+    /* Header & Nav */
+    .header {
+      position: sticky; top: 0; z-index: 100;
+      background: color-mix(in srgb, var(--color-bg) 95%, transparent);
+      backdrop-filter: blur(8px); border-bottom: 1px solid var(--color-divider);
+    }
+    .nav { display: flex; align-items: center; gap: var(--space-8); height: 64px; }
+    .logo { display: flex; align-items: center; gap: var(--space-3); font-weight: 700; }
+    .nav-links { display: flex; gap: var(--space-2); margin-left: auto; }
+    .nav-link { font-size: var(--text-sm); font-weight: 500; padding: var(--space-2) var(--space-3); border-radius: var(--radius-md); }
+    .nav-link:hover { color: var(--color-primary); background: var(--color-surface-offset); }
+    .nav-cta { color: white !important; background: var(--color-primary) !important; }
+    .nav-locked { border: 1px solid var(--color-border); color: var(--color-primary); }
+
+    /* Sections */
+    .section { padding: var(--space-16) 0; }
+    .section-alt { background: var(--color-surface); border-top: 1px solid var(--color-divider); }
+    .section-dark { background: var(--color-primary-active); color: #ffffff; }
+    .section-label { font-size: var(--text-xs); font-weight: 600; color: var(--color-primary); text-transform: uppercase; margin-bottom: var(--space-2); display: block;}
+    .section-title { font-size: var(--text-2xl); font-weight: 700; margin-bottom: var(--space-8); }
+
+    /* Hero */
+    .hero { min-height: 85vh; display: flex; align-items: center; background: linear-gradient(180deg, var(--color-surface-offset) 0%, var(--color-bg) 100%); }
+    .hero-inner { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-12); align-items: center; }
+    .hero-title { font-size: clamp(2rem, 1.5rem + 2vw, 3rem); font-weight: 700; line-height: 1.25; margin-bottom: var(--space-6); }
+    .hero-title .accent { color: var(--color-primary); }
+    .hero-desc { font-size: var(--text-base); color: var(--color-text-muted); margin-bottom: var(--space-8); }
+    
+    .btn { display: inline-flex; align-items: center; gap: var(--space-2); font-weight: 600; padding: 0.75rem 1.5rem; border-radius: var(--radius-md); transition: 0.2s; }
+    .btn-primary { background: var(--color-primary); color: #fff; }
+    .btn-secondary { background: var(--color-surface); border: 1px solid var(--color-border); }
+    
+    .hero-card { background: var(--color-surface-2); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-8); display: flex; flex-direction: column; gap: var(--space-4); box-shadow: var(--shadow-lg); }
+    .hero-stat { display: flex; flex-direction: column; }
+    .stat-number { font-size: var(--text-xl); font-weight: 700; line-height: 1; }
+    .stat-label { font-size: var(--text-xs); color: var(--color-text-muted); }
+    .client-tag { font-size: var(--text-xs); padding: 0.25rem 0.75rem; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-sm); }
+    .client-logos { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+
+    /* Grids */
+    .spec-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6); }
+    .spec-card { background: var(--color-surface-2); border: 1px solid var(--color-border); padding: var(--space-6); border-radius: var(--radius-lg); }
+    .domain-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-5); }
+    .domain-card { background: var(--color-surface-2); border: 1px solid var(--color-border); padding: var(--space-6); border-radius: var(--radius-lg); }
+
+    /* Footer & Contact */
+    .contact-inner { text-align: center; max-width: 600px; margin: 0 auto; }
+    .footer { padding: var(--space-10) 0; border-top: 1px solid var(--color-divider); background: var(--color-surface); text-align: center; }
+
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .spec-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) { .nav-links { display: none; } .domain-grid{ grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <nav class="nav container">
+      <a href="#home" class="logo">
+        <span class="logo-text">Shinichiro Takemoto</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#home" class="nav-link">Home</a></li>
+        <li><a href="#domains" class="nav-link">Domains</a></li>
+        <li><a href="works.html" class="nav-link nav-locked">🔒 Portfolio & Samples</a></li>
+        <li><a href="#contact" class="nav-link nav-cta">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-inner">
+        <div class="hero-content">
+          <span class="hero-label" style="display:inline-block; font-size:12px; font-weight:bold; color:var(--color-primary); margin-bottom:1rem; padding:4px 8px; background:var(--color-primary-bg); border-radius:4px;">English–Japanese Translator</span>
+          <h1 class="hero-title">Precision in Language,<br><span class="accent">Power in Business</span></h1>
+          <p class="hero-desc">
+            An English-Japanese translator specializing in IT, Cloud, and AI. More than just word replacement, I am your translation partner in the AI era, focusing on decision-making and quality assurance. With over 20 years of expertise in the IT and corporate fields, I guarantee Japanese communications with legal and practical precision.
+          </p>
+          <div class="hero-actions" style="display:flex; gap:1rem;">
+            <a href="works.html" class="btn btn-primary">🔒 View Portfolio & Samples</a>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="hero-card">
+            <div class="hero-stat"><span class="stat-number">20+</span><span class="stat-label">Years of Experience</span></div>
+            <div class="hero-stat"><span class="stat-number">13M+</span><span class="stat-label">Words Translated</span></div>
+            <div class="hero-stat"><span class="stat-number">1,000+</span><span class="stat-label">Projects Delivered</span></div>
+          </div>
+          <div class="client-logos">
+            <span class="client-tag">Global Tech</span>
+            <span class="client-tag">Enterprise SaaS</span>
+            <span class="client-tag">Cybersecurity</span>
+            <span class="client-tag">FinTech</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="specialties">
+      <div class="container">
+        <span class="section-label">Specialties</span>
+        <h2 class="section-title">Core Expertise</h2>
+        <div class="spec-grid">
+          <div class="spec-card"><h3>IT, Cloud & AI</h3><p>Documentation for SaaS products, cloud infrastructure, AI platforms, and cybersecurity.</p></div>
+          <div class="spec-card"><h3>MTPE</h3><p>High-quality Machine Translation Post-Editing workflows. Refining MT output into natural, professional Japanese.</p></div>
+          <div class="spec-card"><h3>Subtitles & Video</h3><p>Subtitle translation optimized for timing and expression in product demos and corporate e-learning.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="domains">
+      <div class="container">
+        <span class="section-label">Domains</span>
+        <h2 class="section-title">Subject Areas</h2>
+        <div class="domain-grid">
+          <div class="domain-card">
+            <h3>IT, Cloud & Security</h3>
+            <p>SaaS, cloud infrastructure, cybersecurity, and API documentation. Backed by over 20 years of specialized knowledge.</p>
+          </div>
+          <div class="domain-card">
+            <h3>AI & Machine Learning</h3>
+            <p>LLM products and ML platforms. Designing and translating prompts and UX text with consistent, localized Japanese.</p>
+          </div>
+          <div class="domain-card">
+            <h3>Manufacturing & Engineering</h3>
+            <p>CAD/CAM, PLM, and industrial equipment. High-precision technical documents including industry-standard 3D design software.</p>
+          </div>
+          <div class="domain-card">
+            <h3>Finance, Legal & Tax</h3>
+            <p>Compliance documents, insurance policies, and terms of use. Proven track record in major financial information services and global legal/accounting fields.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-dark" id="contact">
+      <div class="container contact-inner">
+        <h2 class="section-title" style="margin-bottom:1rem; color:#fff;">Translation Inquiries</h2>
+        <p style="margin-bottom:2rem; color:rgba(255,255,255,0.8);">If you are a company looking to view specific past work or translation samples, please contact me below. I will reply with a password to access the detailed portfolio.</p>
+        <a href="mailto:shinichiro.takemoto@iwa.bbiq.jp" class="btn" style="background:#fff; color:var(--color-primary-active);">Contact via Email</a>
+      </div>
+    </section>
+  </main>
+  
+  <footer class="footer">
+    <div class="container"><p style="font-size:12px; color:var(--color-text-faint);">&copy; 2026 Shinichiro Takemoto. All rights reserved.</p></div>
+  </footer>
+</body>
+</html>
